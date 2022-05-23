@@ -54,6 +54,7 @@ check_for_library(no rs-unit-test rs-unit-test.hpp https://github.com/CaptainCro
 set(library rs-web-client)
 set(unittest test-${library})
 include_directories(.)
+find_package(CURL REQUIRED)
 find_package(Threads REQUIRED)
 
 add_library(${library} STATIC
@@ -72,8 +73,8 @@ target_link_libraries(${unittest}
     PRIVATE ${library}
     PRIVATE rs-io
     PRIVATE rs-regex
-    PRIVATE curl
     PRIVATE pcre2-8
+    PRIVATE CURL::libcurl
     PRIVATE Threads::Threads
 )
 
